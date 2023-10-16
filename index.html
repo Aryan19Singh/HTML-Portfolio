@@ -3,50 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
+    <title>Custom Colors</title>
     <style>
-            h1{
-            align-content: center;
+        :root {
+            --text-light: #121212;
+            --background-light: #e5e5e6;
+            --primary-light: #0b7ef0;
+            --secondary-light: #2424ab;
+            --accent-light: #747576;
+
+            --text-dark: #ffffff;
+            --background-dark: #333333;
+            --primary-dark: #ff9900;
+            --secondary-dark: #ff66cc;
+            --accent-dark: #009900;
+        }
+
+        body {
+            color: var(--text-light);
+            background-color: var(--background-light);
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        h1 {
+            color: var(--primary-light);
+        }
+
+        h2 {
+            color: var(--secondary-light);
+        }
+
+        p {
+            color: var(--text-light);
+        }
+
+        .button {
+            background-color: var(--accent-light);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Dark theme styles */
+        body.dark {
+            color: var(--text-dark);
+            background-color: var(--background-dark);
+        }
+
+        body.dark h1 {
+            color: var(--primary-dark);
+        }
+
+        body.dark h2 {
+            color: var(--secondary-dark);
+        }
+
+        body.dark p {
+            color: var(--text-dark);
+        }
+
+        body.dark .button {
+            background-color: var(--accent-dark);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
         }
     </style>
 </head>
 <body>
-<h1 style="text-align: center;">Aryan Singh</h1>
-<h5 style="text-align: center;">9953396812 | aryan0203singh@gmail.com</h5>
-<h2 style="text-align: center;" >Education</h2>
-<hr>
-<table style="width: 100%;">
-    <tr>
-        <td>Maharaja Surajmal Institute of Technology (B.tech in Electronics and Communication Engineering)</td>
-        <td>2024</td>
-    </tr>
-    <tr>
-        <td>Adarsh Jain Dharmic Shiksha Sadan</td>
-        <td>2020</td>
-    </tr>
-    <tr>
-        <td>Air Force Golden Jubilee Institute </td>
-        <td>2018</td>
-    </tr>
-</table>
-<h2 style="text-align: center;">Technical Skills</h2>
-<hr>
-<table style="width: 100%;">
-    <tr>
-        <td>HTML</td>
-        <td>CSS</td>
-        <td>Bootstrap</td>
-        <td>Flexbox</td>
-    </tr>
-    <tr>
-        <td>Javascript</td>
-        <td>C++</td>
-        <td>Data Structures</td>
-        <td>Algorithms</td>
-    </tr>
-</table>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    <h1>Aryan Singh</h1>
+    <h5>9953396812 | aryan0203singh@gmail.com</h5>
+    <h2>Education</h2>
+    <hr>
+    <!-- Your table and other content here -->
+    <h1 style="color: var(--primary);">Aryan Singh</h1>
+    <h5 style="color: var(--accent);">9953396812 | aryan0203singh@gmail.com</h5>
+    <h2 style="color: var(--secondary);">Education</h2>
+    <hr>
+    <table style="width: 100%;">
+        <tr>
+            <td>Maharaja Surajmal Institute of Technology (B.tech in Electronics and Communication Engineering)</td>
+            <td style="color: var(--text);">2024</td>
+        </tr>
+        <tr>
+            <td>Adarsh Jain Dharmic Shiksha Sadan</td>
+            <td style="color: var(--text);">2020</td>
+        </tr>
+        <tr>
+            <td>Air Force Golden Jubilee Institute</td>
+            <td style="color: var(--text);">2018</td>
+        </tr>
+    </table>
+    <h2 style="color: var(--secondary);">Technical Skills</h2>
+    <hr>
+    <table style="width: 100%;">
+        <tr>
+            <td style="color: var(--text);">HTML</td>
+            <td style="color: var(--text);">CSS</td>
+            <td style="color: var(--text);">Bootstrap</td>
+            <td style="color: var(--text);">Flexbox</td>
+        </tr>
+        <tr>
+            <td style="color: var(--text);">Javascript</td>
+            <td style="color: var(--text);">C++</td>
+            <td style="color: var(--text);">Data Structures</td>
+            <td style="color: var(--text);">Algorithms</td>
+        </tr>
+    </table>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('dark')) {
+                body.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
 
-
-
+        // Check the user's theme preference from local storage
+        const userPreference = localStorage.getItem('theme');
+        if (userPreference === 'dark') {
+            document.body.classList.add('dark');
+        }
+    </script>
 </body>
 </html>
+
